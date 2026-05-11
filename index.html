@@ -155,23 +155,6 @@
             transform: translateY(110%);
         }
 
-        /* Swiss Grid Lines */
-        .grid-line {
-            position: absolute;
-            background: rgba(241, 234, 222, 0.04);
-            pointer-events: none;
-        }
-        .grid-line-v {
-            width: 1px;
-            height: 100%;
-            top: 0;
-        }
-        .grid-line-h {
-            height: 1px;
-            width: 100%;
-            left: 0;
-        }
-
         /* Hero Specific */
         .hero {
             min-height: 100vh;
@@ -360,118 +343,91 @@
             text-align: right;
         }
 
-        .capability-preview {
-            position: fixed;
-            width: 300px;
-            height: 200px;
-            pointer-events: none;
-            z-index: 50;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.4s, transform 0.4s;
-            overflow: hidden;
+        /* Contact Section */
+        .contact-section {
+            padding: 10rem 4rem;
         }
 
-        .capability-preview.active {
-            opacity: 1;
-            transform: scale(1);
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 8rem;
+            max-width: 1000px;
         }
 
-        .capability-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(30%) contrast(1.1);
-        }
-
-        /* Admission (Contact) */
-        .admission-form {
-            max-width: 600px;
-        }
-
-        .form-row {
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .form-row input,
-        .form-row textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(241, 234, 222, 0.1);
-            padding: 1rem 0;
-            color: var(--cream);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
+        .contact-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
             font-weight: 300;
-            outline: none;
-            transition: border-color 0.4s;
+            line-height: 1.1;
+            margin-bottom: 3rem;
         }
 
-        .form-row input:focus,
-        .form-row textarea:focus {
-            border-color: var(--gold);
-        }
-
-        .form-row label {
-            position: absolute;
-            left: 0;
-            top: 1rem;
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
+        .contact-heading em {
             color: var(--creamdim);
-            pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-style: italic;
         }
 
-        .form-row input:focus + label,
-        .form-row input:not(:placeholder-shown) + label,
-        .form-row textarea:focus + label,
-        .form-row textarea:not(:placeholder-shown) + label {
-            top: -0.75rem;
+        .contact-description {
+            font-size: 0.85rem;
+            line-height: 1.9;
+            color: var(--creamdim);
+            margin-bottom: 4rem;
+            max-width: 320px;
+        }
+
+        .contact-channel {
+            display: flex;
+            align-items: baseline;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(241, 234, 222, 0.06);
+            transition: background 0.4s;
+        }
+
+        .contact-channel:last-child {
+            border-bottom: 1px solid rgba(241, 234, 222, 0.06);
+        }
+
+        .contact-channel:hover {
+            background: rgba(241, 234, 222, 0.015);
+        }
+
+        .contact-label {
             font-size: 0.55rem;
-            color: var(--gold);
-        }
-
-        .form-row textarea {
-            resize: none;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            background: transparent;
-            border: 1px solid rgba(241, 234, 222, 0.15);
-            color: var(--cream);
-            padding: 1.25rem 3rem;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            color: var(--gold);
+            min-width: 100px;
+            opacity: 0.8;
         }
 
-        .submit-btn::before {
+        .contact-value {
+            font-size: 0.9rem;
+            color: var(--cream);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.4s;
+            letter-spacing: 0.02em;
+        }
+
+        .contact-value::after {
             content: '';
             position: absolute;
-            inset: 0;
-            background: var(--cream);
-            transform: translateY(100%);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: -1;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .submit-btn:hover {
-            color: var(--obsidian);
-            border-color: var(--cream);
+        .contact-channel:hover .contact-value::after {
+            width: 100%;
         }
 
-        .submit-btn:hover::before {
-            transform: translateY(0);
+        .contact-value:hover {
+            color: var(--gold);
         }
 
         /* Footer */
@@ -597,7 +553,7 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            section {
+            section, .contact-section {
                 padding: 6rem 1.5rem;
             }
             
@@ -608,6 +564,11 @@
             
             .capability-meta {
                 text-align: left;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
             }
             
             footer {
@@ -638,25 +599,20 @@
     <nav class="main-nav" id="mainNav">
         <a href="#" class="nav-logo" data-hover>SV</a>
         <div class="nav-links">
-            <a href="#manifesto" data-hover>About</a>
-            <a href="#capabilities" data-hover>Skills</a>
-            <a href="#admission" data-hover>Contact</a>
+            <a href="#manifesto" data-hover>Manifesto</a>
+            <a href="#capabilities" data-hover>Capabilities</a>
+            <a href="#contact" data-hover>Contact</a>
         </div>
     </nav>
 
     <!-- Hero -->
     <section class="hero" id="hero">
-        <!-- Swiss Grid Lines -->
-        <div class="grid-line grid-line-v" style="left: 25%;"></div>
-        <div class="grid-line grid-line-v" style="left: 50%;"></div>
-        <div class="grid-line grid-line-v" style="left: 75%;"></div>
-
         <div class="hero-meta">
             <span class="status">Active</span>
             <span>/</span>
-            <span>Location: India</span>
+            <span>Location: Bangalore,India</span>
             <span>/</span>
-            <span>AI Web Developer</span>
+            <span>AI web Developer</span>
         </div>
 
         <h1 class="hero-name">
@@ -674,14 +630,14 @@
     <!-- Manifesto -->
     <section id="manifesto">
         <div class="max-w-6xl mx-auto">
-            <span class="section-label">About Me</span>
+            <span class="section-label">Introduction</span>
             
             <div class="manifesto-text" id="manifestoText">
                 <p class="line-reveal">
-                    <span class="line-reveal-inner">I am CSE 2nd year undergraduate at Sir MVIT having domain in <span class="highlight">AI Web Developer</span></span>
+                    <span class="line-reveal-inner">I am 2nd year CSE undergraduate studying in Sir MVIT, Bangalore having domain in <span class="highlight">AI Web Development</span></span>
                 </p>
                 <p class="line-reveal">
-                    <span class="line-reveal-inner">I have CGPA of 9.25/10 </span>
+                    <span class="line-reveal-inner">. Every website I build is</span>
                 </p>
                 <p class="line-reveal">
                     <span class="line-reveal-inner">an experiment in making technology feel less like</span>
@@ -708,115 +664,85 @@
     <!-- Capabilities -->
     <section id="capabilities">
         <div class="max-w-6xl mx-auto">
-            <span class="section-label">Operational Disciplines</span>
+            <span class="section-label">Skills</span>
             
             <div class="capability-list" id="capabilityList">
-                <div class="capability-item" data-hover data-preview="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&q=80">
+                <div class="capability-item" data-hover>
                     <span class="capability-num">01</span>
-                    <span class="capability-title">Artificial Intelligence Integration</span>
-                    <span class="capability-meta">LLMs / Generative Systems / Adaptive UX</span>
+                    <span class="capability-title">Programming Languages</span>
+                    <span class="capability-meta">Python / C / C++</span>
                 </div>
                 
-                <div class="capability-item" data-hover data-preview="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=80">
+                <div class="capability-item" data-hover>
                     <span class="capability-num">02</span>
-                    <span class="capability-title">Frontend Architecture</span>
-                    <span class="capability-meta">React / Vue / WebGL / Animation</span>
+                    <span class="capability-title">Web Technologies</span>
+                    <span class="capability-meta">HTML / CSS / JavaScript</span>
                 </div>
                 
-                <div class="capability-item" data-hover data-preview="https://images.unsplash.com/photo-1620712943543-bcc4688e748b?w=600&q=80">
+                <div class="capability-item" data-hover>
                     <span class="capability-num">03</span>
-                    <span class="capability-title">Creative Development</span>
-                    <span class="capability-meta">Generative Art / Installations / Experiments</span>
+                    <span class="capability-title">Developer Tools</span>
+                    <span class="capability-meta">VS Code / Jupyter Notebook</span>
                 </div>
                 
-                <div class="capability-item" data-hover data-preview="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=600&q=80">
+                <div class="capability-item" data-hover>
                     <span class="capability-num">04</span>
-                    <span class="capability-title">Performance Engineering</span>
-                    <span class="capability-meta">Edge Computing / Optimization / Delivery</span>
-                </div>
-                
-                <div class="capability-item" data-hover data-preview="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80">
-                    <span class="capability-num">05</span>
-                    <span class="capability-title">Design Systems</span>
-                    <span class="capability-meta">Tokens / Components / Atomic Methodology</span>
-                </div>
-                
-                <div class="capability-item" data-hover data-preview="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80">
-                    <span class="capability-num">06</span>
-                    <span class="capability-title">Technical Strategy</span>
-                    <span class="capability-meta">Consulting / Roadmaps / Architecture</span>
+                    <span class="capability-title">Other Skills</span>
+                    <span class="capability-meta">Prompt Engineering</span>
                 </div>
             </div>
         </div>
-        
-        <!-- Hover Preview -->
-        <div class="capability-preview" id="capabilityPreview">
-            <img src="" alt="" id="previewImg">
-        </div>
     </section>
 
-    <!-- Admission (Contact) -->
-    <section id="admission">
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
         <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <span class="section-label">Contacts</span>
+            
+            <div class="contact-grid">
                 <div>
-                    <span class="section-label">CONTACTS</span>
-                    <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-8" style="color: var(--cream);">
-                        Initiate<br>
-                        <em style="color: var(--creamdim);">Contact</em>
+                    <h2 class="contact-heading">
+                        Establish<br>
+                        <em>Connection</em>
                     </h2>
-                    <p class="text-sm leading-relaxed mb-12" style="color: var(--creamdim); max-width: 360px;">
-                        Available for select collaborations, independent projects, and consulting engagements. I work with teams who value precision over speed.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <a href="mailto:shivaniv1402@gmail.com" class="block text-sm tracking-wider transition-colors hover:text-[var(--gold)]" style="color: var(--creamdim);" data-hover>
-                            shivaniv1402@gmail.com
-                        </a>
-                        <a href="https://github.com/shivani-alt395" target="_blank" class="block text-sm tracking-wider transition-colors hover:text-[var(--gold)]" style="color: var(--creamdim);" data-hover>
-                            github.com/shivani-alt395
-                        </a>
-                        <a href="https://linkedin.com/in/kumari=shivani-verma" target="_blank" class="block text-sm tracking-wider transition-colors hover:text-[var(--gold)]" style="color: var(--creamdim);" data-hover>
-                            linkedin.com/in/kumari-shivani-verma-
-                        </a>
-                    </div>
+                    <!-- <p class="contact-description">
+                        Available for collaborations, independent projects, and consulting. I respond to all transmissions within 24 hours.
+                    </p> -->
                 </div>
                 
-                <!-- <div class="admission-form">
-                    <form id="admissionForm">
-                        <div class="form-row">
-                            <input type="text" id="name" placeholder=" " required data-hover>
-                            <label for="name">Your Designation</label>
-                        </div>
-                        <div class="form-row">
-                            <input type="email" id="email" placeholder=" " required data-hover>
-                            <label for="email">Electronic Address</label>
-                        </div>
-                        <div class="form-row">
-                            <input type="text" id="subject" placeholder=" " required data-hover>
-                            <label for="subject">Nature of Inquiry</label>
-                        </div>
-                        <div class="form-row">
-                            <textarea id="message" placeholder=" " required data-hover></textarea>
-                            <label for="message">Transmission</label>
-                        </div>
-                        <button type="submit" class="submit-btn" data-hover id="submitBtn">
-                            Transmit Message
-                        </button>
-                    </form>
-                </div> -->
+                <div class="contact-channels">
+                    <div class="contact-channel" data-hover>
+                        <span class="contact-label">Email</span>
+                        <a href="mailto:hello@shivaniverma.dev" class="contact-value">shivaniv1402@gmail.com</a>
+                    </div>
+                    
+                    <div class="contact-channel" data-hover>
+                        <span class="contact-label">LinkedIn</span>
+                        <a href="https://linkedin.com/in/shivaniverma" target="_blank" class="contact-value">linkedin.com/in/kumari-shivani-verma-</a>
+                    </div>
+                    
+                    <div class="contact-channel" data-hover>
+                        <span class="contact-label">GitHub</span>
+                        <a href="https://github.com/shivaniverma" target="_blank" class="contact-value">github.com/Shivani-alt395</a>
+                    </div>
+                    
+                    <div class="contact-channel" data-hover>
+                        <span class="contact-label">Phone</span>
+                        <a href="tel:+919876543210" class="contact-value">+91 9472503021</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-left">Independent Practice / 2026</div>
-        <div class="footer-center">Kumari Shivani Verma</div>
+        <div class="footer-left">AI-Web Developer </div>
+        <div class="footer-center">KSV</div>
         <div class="footer-links">
             <a href="https://github.com/shivaniverma" target="_blank" data-hover>GitHub</a>
             <a href="https://linkedin.com/in/shivaniverma" target="_blank" data-hover>LinkedIn</a>
-            <!-- <a href="https://twitter.com/shivaniverma" target="_blank" data-hover>Twitter</a> -->
+            <a href="mailto:hello@shivaniverma.dev" data-hover>Email</a>
         </div>
     </footer>
 
@@ -940,69 +866,6 @@
                 },
                 delay: i * 0.1
             });
-        });
-
-        // Capability Hover Preview
-        const preview = document.getElementById('capabilityPreview');
-        const previewImg = document.getElementById('previewImg');
-        let previewX = 0, previewY = 0, targetX = 0, targetY = 0;
-
-        document.querySelectorAll('.capability-item').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                const src = item.dataset.preview;
-                if (src) {
-                    previewImg.src = src;
-                    preview.classList.add('active');
-                }
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                preview.classList.remove('active');
-            });
-            
-            item.addEventListener('mousemove', (e) => {
-                targetX = e.clientX + 30;
-                targetY = e.clientY - 100;
-            });
-        });
-
-        function animatePreview() {
-            previewX += (targetX - previewX) * 0.1;
-            previewY += (targetY - previewY) * 0.1;
-            preview.style.left = previewX + 'px';
-            preview.style.top = previewY + 'px';
-            requestAnimationFrame(animatePreview);
-        }
-        animatePreview();
-
-        // Parallax on grid lines
-        gsap.to('.grid-line-v', {
-            y: 100,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '#hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1
-            }
-        });
-
-        // Form Handling
-        document.getElementById('admissionForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.textContent = 'Transmission Received';
-            btn.style.borderColor = 'var(--gold)';
-            btn.style.color = 'var(--obsidian)';
-            btn.style.background = 'var(--cream)';
-            
-            setTimeout(() => {
-                btn.textContent = 'Transmit Message';
-                btn.style.borderColor = '';
-                btn.style.color = '';
-                btn.style.background = '';
-                e.target.reset();
-            }, 3000);
         });
 
         // Smooth scroll for nav links
