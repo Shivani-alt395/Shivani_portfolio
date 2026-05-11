@@ -343,6 +343,37 @@
             text-align: right;
         }
 
+        /* Skill Image Preview - Floating */
+        .skill-preview {
+            position: fixed;
+            width: 320px;
+            height: 220px;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0;
+            transform: scale(0.9) translate(-50%, -50%);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            overflow: hidden;
+            border: 1px solid rgba(241, 234, 222, 0.1);
+        }
+
+        .skill-preview.active {
+            opacity: 1;
+            transform: scale(1) translate(-50%, -50%);
+        }
+
+        .skill-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(40%) contrast(1.1) brightness(0.9);
+            transition: filter 0.4s;
+        }
+
+        .skill-preview.active img {
+            filter: grayscale(20%) contrast(1.05) brightness(0.95);
+        }
+
         /* Contact Section */
         .contact-section {
             padding: 10rem 4rem;
@@ -584,6 +615,10 @@
             .nav-links {
                 gap: 1.5rem;
             }
+
+            .skill-preview {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -595,12 +630,17 @@
     <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
 
+    <!-- Skill Image Preview Container -->
+    <div class="skill-preview" id="skillPreview">
+        <img src="" alt="" id="skillPreviewImg">
+    </div>
+
     <!-- Navigation -->
     <nav class="main-nav" id="mainNav">
         <a href="#" class="nav-logo" data-hover>KSV</a>
         <div class="nav-links">
-            <a href="#manifesto" data-hover>Introduction</a>
-            <a href="#capabilities" data-hover>Skills</a>
+            <a href="#manifesto" data-hover>Manifesto</a>
+            <a href="#capabilities" data-hover>Capabilities</a>
             <a href="#contact" data-hover>Contact</a>
         </div>
     </nav>
@@ -610,13 +650,12 @@
         <div class="hero-meta">
             <span class="status">Active</span>
             <span>/</span>
-            <span>Bangalore,India</span>
+            <span>Location: India</span>
             <span>/</span>
-            <span>AI web Developer</span>
+            <span>Independent Practice</span>
         </div>
 
         <h1 class="hero-name">
-            <div class="line"><span>Kumari</span></div>
             <div class="line"><span>Shivani</span></div>
             <div class="line"><span>Verma</span></div>
         </h1>
@@ -630,14 +669,14 @@
     <!-- Manifesto -->
     <section id="manifesto">
         <div class="max-w-6xl mx-auto">
-            <span class="section-label">Introduction</span>
+            <span class="section-label">Assembly Overview</span>
             
             <div class="manifesto-text" id="manifestoText">
                 <p class="line-reveal">
-                    <span class="line-reveal-inner">I am 2nd year CSE undergraduate studying in Sir MVIT, Bangalore having domain in <span class="highlight">AI Web Development</span>.</span>
+                    <span class="line-reveal-inner">I operate at the threshold where <span class="highlight">machine intelligence</span></span>
                 </p>
                 <p class="line-reveal">
-                    <span class="line-reveal-inner">Every website I build is</span>
+                    <span class="line-reveal-inner">meets human intention. Every system I build is</span>
                 </p>
                 <p class="line-reveal">
                     <span class="line-reveal-inner">an experiment in making technology feel less like</span>
@@ -664,28 +703,28 @@
     <!-- Capabilities -->
     <section id="capabilities">
         <div class="max-w-6xl mx-auto">
-            <span class="section-label">Skills</span>
+            <span class="section-label">Operational Disciplines</span>
             
             <div class="capability-list" id="capabilityList">
-                <div class="capability-item" data-hover>
+                <div class="capability-item" data-hover data-image="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop&q=80">
                     <span class="capability-num">01</span>
                     <span class="capability-title">Programming Languages</span>
                     <span class="capability-meta">Python / C / C++</span>
                 </div>
                 
-                <div class="capability-item" data-hover>
+                <div class="capability-item" data-hover data-image="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&h=400&fit=crop&q=80">
                     <span class="capability-num">02</span>
                     <span class="capability-title">Web Technologies</span>
                     <span class="capability-meta">HTML / CSS / JavaScript</span>
                 </div>
                 
-                <div class="capability-item" data-hover>
+                <div class="capability-item" data-hover data-image="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop&q=80">
                     <span class="capability-num">03</span>
                     <span class="capability-title">Developer Tools</span>
                     <span class="capability-meta">VS Code / Jupyter Notebook</span>
                 </div>
                 
-                <div class="capability-item" data-hover>
+                <div class="capability-item" data-hover data-image="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop&q=80">
                     <span class="capability-num">04</span>
                     <span class="capability-title">Other Skills</span>
                     <span class="capability-meta">Prompt Engineering</span>
@@ -697,7 +736,7 @@
     <!-- Contact -->
     <section id="contact" class="contact-section">
         <div class="max-w-6xl mx-auto">
-            <span class="section-label">Contacts</span>
+            <span class="section-label">Direct Line</span>
             
             <div class="contact-grid">
                 <div>
@@ -705,30 +744,30 @@
                         Establish<br>
                         <em>Connection</em>
                     </h2>
-                    <!-- <p class="contact-description">
+                    <p class="contact-description">
                         Available for collaborations, independent projects, and consulting. I respond to all transmissions within 24 hours.
-                    </p> -->
+                    </p>
                 </div>
                 
                 <div class="contact-channels">
                     <div class="contact-channel" data-hover>
                         <span class="contact-label">Email</span>
-                        <a href="mailto:hello@shivaniverma.dev" class="contact-value">shivaniv1402@gmail.com</a>
+                        <a href="mailto:hello@shivaniverma.dev" class="contact-value">hello@shivaniverma.dev</a>
                     </div>
                     
                     <div class="contact-channel" data-hover>
                         <span class="contact-label">LinkedIn</span>
-                        <a href="https://linkedin.com/in/shivaniverma" target="_blank" class="contact-value">linkedin.com/in/kumari-shivani-verma-</a>
+                        <a href="https://linkedin.com/in/shivaniverma" target="_blank" class="contact-value">linkedin.com/in/shivaniverma</a>
                     </div>
                     
                     <div class="contact-channel" data-hover>
                         <span class="contact-label">GitHub</span>
-                        <a href="https://github.com/shivaniverma" target="_blank" class="contact-value">github.com/Shivani-alt395</a>
+                        <a href="https://github.com/shivaniverma" target="_blank" class="contact-value">github.com/shivaniverma</a>
                     </div>
                     
                     <div class="contact-channel" data-hover>
                         <span class="contact-label">Phone</span>
-                        <a href="tel:+919876543210" class="contact-value">+91 9472503021</a>
+                        <a href="tel:+919876543210" class="contact-value">+91 98765 43210</a>
                     </div>
                 </div>
             </div>
@@ -737,8 +776,8 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-left">AI-Web Developer </div>
-        <div class="footer-center">KSV</div>
+        <div class="footer-left">Independent Practice / 2024</div>
+        <div class="footer-center">SV</div>
         <div class="footer-links">
             <a href="https://github.com/shivaniverma" target="_blank" data-hover>GitHub</a>
             <a href="https://linkedin.com/in/shivaniverma" target="_blank" data-hover>LinkedIn</a>
@@ -867,6 +906,46 @@
                 delay: i * 0.1
             });
         });
+
+        // Skill Image Preview on Hover
+        const skillPreview = document.getElementById('skillPreview');
+        const skillPreviewImg = document.getElementById('skillPreviewImg');
+        let previewX = 0, previewY = 0, targetPreviewX = 0, targetPreviewY = 0;
+
+        document.querySelectorAll('.capability-item').forEach(item => {
+            const imageUrl = item.dataset.image;
+            
+            item.addEventListener('mouseenter', () => {
+                if (imageUrl) {
+                    skillPreviewImg.src = imageUrl;
+                    skillPreview.classList.add('active');
+                }
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                skillPreview.classList.remove('active');
+            });
+            
+            item.addEventListener('mousemove', (e) => {
+                targetPreviewX = e.clientX;
+                targetPreviewY = e.clientY;
+            });
+        });
+
+        function animatePreview() {
+            previewX += (targetPreviewX - previewX) * 0.12;
+            previewY += (targetPreviewY - previewY) * 0.12;
+            
+            // Offset to position preview near cursor but not covering it
+            const offsetX = 40;
+            const offsetY = -20;
+            
+            skillPreview.style.left = (previewX + offsetX) + 'px';
+            skillPreview.style.top = (previewY + offsetY) + 'px';
+            
+            requestAnimationFrame(animatePreview);
+        }
+        animatePreview();
 
         // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
